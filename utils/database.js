@@ -9,14 +9,18 @@ export const connectToDB = async () => {
     console.log("MongoDB is already connected");
     return;
   }
+
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "promptopia",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+
+    isConnected = true;
+
     console.log("MongoDB connected");
   } catch (error) {
-    console.log(`Error connecting to MongoDB: ${error}`);
+    console.log(error);
   }
 };
